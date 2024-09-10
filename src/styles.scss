@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .container {
+    padding: 20px;
+    font-size: 16px;
+  }
+}
