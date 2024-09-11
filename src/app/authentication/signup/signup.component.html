@@ -1,23 +1,42 @@
-<!-- src/app/login/login.component.html -->
 <div class="login-container">
   <div class="login-form">
-    <h2>Cadastro</h2>
-    <form [formGroup]="form" (ngSubmit)="signup()">
-      <div class="form-group">
-        <label for="nome">Nome</label>
-        <input type="nome" id="nome" name="nome" formControlName="nome">
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" formControlName="email">
-      </div>
-      <div class="form-group">
-        <label for="password">Senha</label>
-        <input type="password" id="password" name="password" formControlName="password">
-      </div>
-      <div class="form-group">
-        <button type="submit" >Cadastrar</button>
-      </div>
-    </form>
+    <a (click)="back()">Voltar</a>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Cadastro</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="signup()">
+          <mat-form-field appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome" id="nome">
+            <mat-error *ngIf="form.controls['nome'].invalid && form.controls['nome']touched">
+              Nome é obrigatório.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" id="email">
+            <mat-error *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+              Email é obrigatório e deve ser válido.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" formControlName="password" id="password">
+            <mat-error *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+              Senha é obrigatória.
+            </mat-error>
+          </mat-form-field>
+
+          <div class="form-group">
+            <button mat-raised-button color="primary" type="submit" [disabled]="isLoading" [disabled]="!form.valid">Cadastrar</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
   </div>
 </div>

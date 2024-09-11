@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -9,63 +11,66 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
-
   form!: FormGroup;
+  isLoading = false; // Flag para controle do loader
 
-  constructor(private fb: FormBuilder,
-              private router: Router){}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private snackBar: MatSnackBar
+  ) { }
 
-
-
-  ngOnInit(){
-    this.initForms()
+  ngOnInit() {
+    this.initForms();
   }
 
-
-  initForms(){
+  initForms() {
     this.form = this.fb.group({
-      nome:['',[Validators.required]],
-      email:['',[Validators.required]],
-      password:['', [Validators.required]]
-    })
+      nome: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]]
+    });
   }
 
-  getValueControl(form:FormGroup, control:string){
+  getValueControl(form: FormGroup, control: string) {
     return form.controls[control].value;
-  };
-
-  createPayloadLogin(
-    nome = this.getValueControl(this.form, 'nome'),
-    email = this.getValueControl(this.form, 'email'),
-    password = this.getValueControl(this.form, 'password'))
-  {
-    const payload ={nome, email, password}
-
-    return payload;
   }
 
+  createPayloadLogin() {
+    const nome = this.getValueControl(this.form, 'nome');
+    const email = this.getValueControl(this.form, 'email');
+    const password = this.getValueControl(this.form, 'password');
+    return { nome, email, password };
+  }
 
-  signup(){
-    if(this.isValidForm()){
-      const {email} = this.createPayloadLogin();
-      console.log(this.createPayloadLogin())
-      // this.loginService.login(this.createPayloadLogin())
-      // .subscribe((res:any)=>{
-      //   let {token} = res;
-      //   this.navigateURL('home');
-      // })
-    }else{
-    //  this.messages = [{ severity: 'error', summary: 'Login ou senha incorretos'}];
+  signup() {
+    if (this.isValidForm()) {
+      this.isLoading = true;
+
+      this.authService.createUser(this.createPayloadLogin())
+        .subscribe({
+          next: (res: any) => {
+            this.isLoading = false;
+            this.router.navigate(['login']); // Navegar para a página inicial
+          },
+          error: (err: any) => {
+            this.isLoading = false;
+            this.snackBar.open('Erro ao cadastrar. Por favor, tente novamente.', 'Fechar', {
+              duration: 5000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center',
+            });
+          }
+        });
     }
   }
 
-  isValidForm(){
+  isValidForm() {
     return this.form.valid;
   }
 
-  navigateURL(url: string){
-    this.router.navigate([`/${url}`])
+  back() {
+    this.router.navigate(['login']);
   }
-
-
 }

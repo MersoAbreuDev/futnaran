@@ -1,0 +1,22 @@
+<div class="sidebar" [ngClass]="{'active': isSidebarOpen}">
+  <div class="sidebar-content">
+    <button class="close-btn" (click)="toggleSidebar()">×</button>
+    <ul class="nav-links">
+      <!-- <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/about">About</a></li>
+      <li><a routerLink="/services">Services</a></li>-->
+      <li><a routerLink="profile">Perfil</a></li>
+    </ul>
+    <footer class="sidebar-footer">
+      <button  mat-flat-button (click)="logoff()" class="theme-btn">Sair</button>
+    </footer>
+  </div>
+  <button class="toggle-btn" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+    ☰
+  </button>
+</div>
+<div class="overlay" [ngClass]="{'active': isSidebarOpen}" (click)="toggleSidebar()"></div>
+<div style="display: flex;justify-content: center;margin-top: 20%;">
+  <app-terms></app-terms>
+</div>
+
