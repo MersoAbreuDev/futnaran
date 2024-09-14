@@ -1,22 +1,79 @@
-<div class="sidebar" [ngClass]="{'active': isSidebarOpen}">
-  <div class="sidebar-content">
-    <button class="close-btn" (click)="toggleSidebar()">×</button>
-    <ul class="nav-links">
-      <!-- <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/about">About</a></li>
-      <li><a routerLink="/services">Services</a></li>-->
-      <li><a routerLink="profile">Perfil</a></li>
-    </ul>
-    <footer class="sidebar-footer">
-      <button  mat-flat-button (click)="logoff()" class="theme-btn">Sair</button>
-    </footer>
-  </div>
-  <button class="toggle-btn" (click)="toggleSidebar()" aria-label="Toggle sidebar">
-    ☰
+<div style="padding: 20px;">
+  <button (click)="logoff()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; text-align: center;">
+    <span class="material-symbols-outlined" style="color: red; font-size: 30px;">
+      move_item
+    </span>
+    <div style="color: red; font-size: 10px;">Sair</div>
   </button>
-</div>
-<div class="overlay" [ngClass]="{'active': isSidebarOpen}" (click)="toggleSidebar()"></div>
-<div style="display: flex;justify-content: center;margin-top: 20%;">
-  <app-terms></app-terms>
+
+  <mat-card class="example-card" appearance="outlined" style="margin-top: 45px;">
+    <mat-card-content style="padding: 0;margin: 0;">
+     <p>Veja aqui termos <span><br></span>e regras!</p>
+     <span ><button style="width: 50%;font-size: 10px;height:25px;background-color: #FFFF;color: #0a0a0a;"  mat-flat-button>Acesse termos!</button></span>
+      <img src="/assets/img/banner.png" alt="Image of a Shiba Inu">
+    </mat-card-content>
+  </mat-card>
 </div>
 
+<div style="padding: 15px;">
+  Próximas partidas!
+  <div style="font-size: 12px;color: rgb(46, 46, 216);">
+    <app-jogos ></app-jogos>
+  </div>
+</div>
+
+<div  style="padding: 15px;">
+  Classificação!
+  <div style="font-size: 12px;color: rgb(46, 46, 216);">
+    Sem classificações definadas!
+  </div>
+</div>
+<div class="cards-container" style="padding: 15px;">
+  <span>Confira! </span>
+  <div class="cards-row">
+    <mat-card [ngClass]="{'active': isActive}" class="clickable-card" (click)="toggleActive()">
+      <mat-card-content (click)="goPlayers()" style="padding: 0;margin: 0;text-align: center;">
+        <img style="width: 60px;height: auto;padding: 0;margin: 0;" src="/assets/img/participantes.png" alt="">
+        <div class="card-text">
+          Atletas participantes!
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card [ngClass]="{'active': isActive}" class="clickable-card">
+      <mat-card-content (click)="goPlayers()" style="padding: 0;margin: 0;text-align: center;">
+        <img style="width: 95px;height: 80px;padding: 0;margin: 0;" src="/assets/img/artilheiro.png" alt="">
+        <div class="card-text">
+          Rancking artilheiros
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card [ngClass]="{'active': isActive}" class="clickable-card">
+      <mat-card-content (click)="goPlayers()" style="padding: 0;margin: 0;text-align: center;">
+        <img style="width: 100px;height: 80px;padding: 0;margin: 0;" src="/assets/img/goleiro.png" alt="">
+        <div class="card-text">
+          Rancking goleiros
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<div  style="padding: 15px;">
+  Melhores da rodada!
+  <div style="font-size: 12px;color: rgb(46, 46, 216);">
+    Não definidos!
+  </div>
+</div>
+
+<footer  style="border:none;background-color: transparent;" class="mobile-tabbar">
+  <button style="border: #C4C4C4; background: none;" class="ion-no-border" mat-button (click)="goBack()"> <span style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">
+      arrow_circle_left
+      </span></button>
+  <button style="border: #C4C4C4; background: none;" class="ion-no-border" mat-button   (click)="navigateToHome()"><span style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">home</span></button>
+  <button style="border: #C4C4C4; background: none;" mat-button (click)="navigateToProfile()"><span style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">
+      account_circle
+      </span></button>
+  <button style="border: #C4C4C4; background: none;" mat-button (click)="goAdminSession()"><span style="font-size: 35px;color: #C4C4C4;"  class="material-symbols-outlined">
+    menu
+    </span>
+  </button>
+</footer>

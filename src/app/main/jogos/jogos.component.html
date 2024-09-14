@@ -1,0 +1,16 @@
+<div class="card-slider-container">
+    <div class="cards-wrapper" #cardsContainer>
+      <mat-card class="card-item" *ngFor="let card of cards">
+        <mat-card-content>
+            <div class="card-content">
+               
+                <div class="card-text">
+                <h2>{{ card.title }}</h2>
+                <p>{{ card.description }}</p>
+                </div>
+            </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+</div>
+  

@@ -1,101 +1,200 @@
-/* sidebar.component.css */
+// /* sidebar.component.css */
 
-:host {
-  display: block;
-}
+// :host {
+//   display: block;
+// }
 
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -250px; /* Hide the sidebar off-screen */
-  width: 250px;
-  height: 100%;
-  background-color: #CACACA;
-  color: white;
-  transition: left 0.3s ease;
-  z-index: 1000;
-}
+// .sidebar {
+//   position: fixed;
+//   top: 0;
+//   left: -250px; /* Hide the sidebar off-screen */
+//   width: 250px;
+//   height: 100%;
+//   background-color: #CACACA;
+//   color: white;
+//   transition: left 0.3s ease;
+//   z-index: 1000;
+// }
 
-.sidebar.active {
-  left: 0; /* Show the sidebar */
-}
+// .sidebar.active {
+//   left: 0; /* Show the sidebar */
+// }
 
-.sidebar-content {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 1rem;
-  box-sizing: border-box;
-}
+// .sidebar-content {
+//   display: flex;
+//   flex-direction: column;
+//   height: 100%;
+//   padding: 1rem;
+//   box-sizing: border-box;
+// }
 
-.nav-links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  flex: 1; /* Grow to fill space */
-}
+// .nav-links {
+//   list-style: none;
+//   margin: 0;
+//   padding: 0;
+//   flex: 1; /* Grow to fill space */
+// }
 
-.nav-links li {
-  margin: 1rem 0;
-}
+// .nav-links li {
+//   margin: 1rem 0;
+// }
 
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
+// .nav-links a {
+//   color: white;
+//   text-decoration: none;
+//   font-weight: bold;
+// }
 
-.close-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
-  align-self: flex-end;
-}
+// .close-btn {
+//   background: none;
+//   border: none;
+//   color: white;
+//   font-size: 2rem;
+//   cursor: pointer;
+//   align-self: flex-end;
+// }
 
-.sidebar-footer {
-  margin-top: auto; /* Pushes footer to the bottom */
-  padding: 1rem 0;
-}
+// .sidebar-footer {
+//   margin-top: auto; /* Pushes footer to the bottom */
+//   padding: 1rem 0;
+// }
 
-.theme-btn {
-  background-color: #444;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-}
+// .theme-btn {
+//   background-color: #444;
+//   color: white;
+//   border: none;
+//   padding: 0.5rem 1rem;
+//   cursor: pointer;
+//   border-radius: 5px;
+// }
 
-.theme-btn:hover {
-  background-color: #555;
-}
+// .theme-btn:hover {
+//   background-color: #555;
+// }
 
-.toggle-btn {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  color: white;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 1100;
-}
+// .toggle-btn {
+//   position: fixed;
+//   top: 1rem;
+//   left: 1rem;
+//   color: white;
+//   border: none;
+//   font-size: 2rem;
+//   cursor: pointer;
+//   z-index: 1100;
+// }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 900;
-}
+// .overlay {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   visibility: hidden;
+//   opacity: 0;
+//   transition: opacity 0.3s ease;
+//   z-index: 900;
+// }
 
-.overlay.active {
-  visibility: visible;
-  opacity: 1;
-}
+// .overlay.active {
+//   visibility: visible;
+//   opacity: 1;
+// }
+
+
+
+  /* Esconder a TabBar em telas maiores */
+  .mobile-tabbar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    justify-content: space-around;
+    padding: 10px 0;
+  }
+  
+  /* Exibir a TabBar em dispositivos móveis */
+  @media (max-width: 768px) {
+    .mobile-tabbar {
+      display: flex;
+    }
+  
+    .cards-container {
+      padding-bottom: 60px; /* Ajustar espaço para não sobrepor a TabBar */
+    }
+  }
+  .example-card {
+    max-width: 500px; /* Ajuste do tamanho do card, se necessário */
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #246BFD, #0C0C69);
+    height: 180px;
+    border-radius: 10px;
+    border: none;
+    padding: 20px;
+    position: relative; /* Adiciona posição relativa para sobrepor a imagem */
+    overflow: visible; /* Permite que a imagem saia dos limites do card */
+  }
+  
+  .example-card img {
+    position: absolute;
+    top: -10px; /* Posição da imagem para que ela sobreponha o card */
+    left: 73%; /* Centraliza a imagem horizontalmente no card */
+    transform: translateX(-50%);
+    height: 190px; /* Ajuste o tamanho da imagem */
+    z-index: 2; /* Garante que a imagem sobreponha o conteúdo do card */
+  }
+  
+  .example-card mat-card-header {
+    position: relative;
+    z-index: 1; /* Garante que o header do card fique abaixo da imagem */
+  }
+
+  mat-card-content {
+    z-index: 1;
+  }
+  
+  .clickable-card {
+    width: 100px;
+    height: 120px;
+    padding: 0;
+    margin: 0;
+    margin-top: 15px;
+    background-color: #222232;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  /* Efeito hover, sempre que o mouse passar sobre o card */
+  .clickable-card:hover {
+    background-color: #ED6B4E;
+  }
+  
+  /* Efeito quando o card foi clicado, mantém o estado ativo */
+  .clickable-card.active {
+    background-color: #ED6B4E;
+  }
+  
+  /* Quando o card está ativo e o mouse está sobre ele, o hover ainda funciona */
+  .clickable-card.active:hover {
+    background-color: #ED6B4E;
+  }
+  
+  .card-text {
+    color: #FFF;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 400;
+    margin-top: -5px;
+    line-height: 1;
+  }
+  
+  .cards-row {
+    display: flex;
+    justify-content: space-around; /* Alinha os cards com espaçamento */
+    flex-wrap: wrap; /* Permite que os cards quebrem de linha em telas menores */
+   
+  }
+  

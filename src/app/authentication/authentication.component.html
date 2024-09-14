@@ -1,26 +1,33 @@
-<!-- src/app/login/login.component.html -->
 <div class="login-container">
-  <div class="login-form">
-    <h2>Login</h2>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" formControlName="email">
-      </div>
-      <div class="form-group">
-        <label for="password">Senha</label>
-        <input type="password" id="password" name="password" formControlName="password">
-      </div>
-      <div class="form-group">
-        <button type="submit" [disabled]="!form.valid">Entrar</button>
-      </div>
-      <div class="register">
-        <span>Não tem uma conta? </span>
-        <a routerLink="signup">Registre-se</a>
-      </div>
-      <div class="forgot-password">
-        <a routerLink="forgot-password">Esqueci minha senha</a>
-      </div>
-    </form>
+  <div style="width: 100%;justify-content: center;display: flex;">
+    <img style="width: 80%;" src="/assets/img/logo.png" alt="">
+  </div>
+  <div class="card-container">
+    <div style="width: 100%;padding-right:40px;">
+      <form [formGroup]="form" (ngSubmit)="submit()" class="form-container">
+        <div class="custom-input">
+          <mat-label class="custom-label">Email</mat-label>
+          <input class="input-custom" formControlName="email" placeholder="Digite seu email">
+          <mat-error *ngIf="form.controls['email'].invalid && form.controls['email'].touched">
+            Email é obrigatório e deve ser um email válido.
+          </mat-error>
+        </div>
+        <div class="custom-input">
+          <mat-label class="custom-label">Senha</mat-label>
+          <input type="password" class="input-custom" formControlName="password" placeholder="Digite sua senha">
+          <mat-error *ngIf="form.controls['password'].invalid && form.controls['password'].touched">
+            Senha é obrigatória.
+          </mat-error>
+        </div>
+        <div style="width: 100%;display:flex; justify-content: center;margin-top: 15px;">
+          <button [disabled]="!form.valid" mat-stroked-button class="submit-button" type="submit">
+            Acessar
+          </button>
+        </div>
+        <div style="display: flex;justify-content: center;margin-top: 10px;">
+          <a>Esqueci a senha!</a>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

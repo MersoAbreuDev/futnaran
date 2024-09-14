@@ -1,0 +1,64 @@
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .player-card {
+    background-color: #222232;
+    width: 300px;
+    margin: 10px;
+  }
+  
+  .player-details {
+    
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .player-info {
+    display: grid;
+   
+    grid-template-columns: repeat(4, 1fr); /* Divide em 4 colunas */
+    gap: 10px;
+    padding: 10px 0;
+  }
+  
+  .player-info span {
+    text-align: center;
+  }
+  
+  .clickable-image {
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .clickable-image:hover {
+    transform: scale(1.1);
+  }
+
+  /* Esconder a TabBar em telas maiores */
+.mobile-tabbar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    justify-content: space-around;
+    padding: 10px 0;
+  }
+  
+  /* Exibir a TabBar em dispositivos móveis */
+  @media (max-width: 768px) {
+    .mobile-tabbar {
+      display: flex;
+    }
+  
+    .cards-container {
+      padding-bottom: 60px; /* Ajustar espaço para não sobrepor a TabBar */
+    }
+  }
+  

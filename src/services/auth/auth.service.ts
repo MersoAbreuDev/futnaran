@@ -4,6 +4,7 @@ import { BehaviorSubject, catchError, from, map, Observable, of, switchMap, thro
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../enviroments/enviroment';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { IJogador } from '../../interfaces/IJogador';
 
 @Injectable({
   providedIn: 'root'
@@ -185,4 +186,17 @@ logout(): void {
     return throwError(error.error || 'Erro no servidor');
   }
 
+  updateUser(uid: string, data: { nome?: string, jogador?: Partial<IJogador> }): Observable<any> {
+    return this.http.put<any>(`${this.url}/users/${uid}`, data)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getAllPlayers(): Observable<IJogador[]> {
+    return this.http.get<IJogador[]>(`${this.url}/users`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
 }
