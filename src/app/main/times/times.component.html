@@ -1,0 +1,14 @@
+<div class="card-slider-container">
+  <div class="cards-wrapper" #cardsContainer>
+    <mat-card class="card-item" *ngFor="let card of images">
+      <mat-card-content>
+          <div class="card-content">
+              <div class="card-text">
+                <img style="width: 45px;height: 45px; border-radius: 100px;border:15px #cacaca;" src="{{card.path}}" alt="">
+                <p>{{ card.description }}</p>
+              </div>
+          </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

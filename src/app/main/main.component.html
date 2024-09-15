@@ -1,11 +1,16 @@
 <div style="padding: 20px;">
+
+    <img src="{{this.img?.imagem}}" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%; border: 2px solid #C4C4C4;">
+
   <button (click)="logoff()" style="position: absolute; top: 10px; right: 10px; background: none; border: none; text-align: center;">
     <span class="material-symbols-outlined" style="color: red; font-size: 30px;">
       move_item
     </span>
     <div style="color: red; font-size: 10px;">Sair</div>
   </button>
-
+  <div>
+    Bem vindo, {{this.img?.nome}}!
+  </div>
   <mat-card class="example-card" appearance="outlined" style="margin-top: 45px;">
     <mat-card-content style="padding: 0;margin: 0;">
      <p>Veja aqui termos <span><br></span>e regras!</p>
@@ -13,6 +18,13 @@
       <img src="/assets/img/banner.png" alt="Image of a Shiba Inu">
     </mat-card-content>
   </mat-card>
+</div>
+
+<div style="padding: 15px;">
+  Seleções!
+  <div style="font-size: 12px;color: rgb(46, 46, 216);">
+    <app-times></app-times>
+  </div>
 </div>
 
 <div style="padding: 15px;">
@@ -40,7 +52,7 @@
       </mat-card-content>
     </mat-card>
     <mat-card [ngClass]="{'active': isActive}" class="clickable-card">
-      <mat-card-content (click)="goPlayers()" style="padding: 0;margin: 0;text-align: center;">
+      <mat-card-content  style="padding: 0;margin: 0;text-align: center;">
         <img style="width: 95px;height: 80px;padding: 0;margin: 0;" src="/assets/img/artilheiro.png" alt="">
         <div class="card-text">
           Rancking artilheiros
@@ -48,7 +60,7 @@
       </mat-card-content>
     </mat-card>
     <mat-card [ngClass]="{'active': isActive}" class="clickable-card">
-      <mat-card-content (click)="goPlayers()" style="padding: 0;margin: 0;text-align: center;">
+      <mat-card-content  style="padding: 0;margin: 0;text-align: center;">
         <img style="width: 100px;height: 80px;padding: 0;margin: 0;" src="/assets/img/goleiro.png" alt="">
         <div class="card-text">
           Rancking goleiros

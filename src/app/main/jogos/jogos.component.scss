@@ -6,23 +6,27 @@
     overflow: hidden;
     padding: 10px;
     height: 80px;
+    background-color: #222232;
   }
-  
+
   .cards-wrapper {
     display: flex;
     overflow-x: scroll;
+    overflow-y: none;
     scroll-behavior: smooth; /* Transição suave na rolagem */
     gap: 15px;
     width: 100%;
     height: 80px;
+    background-color: #222232;
   }
-  
+
   .card-item {
     min-width: 340px;
     flex: 0 0 auto; /* Os cards não encolherão */
     height: 80px;
+    overflow: hidden;
   }
-  
+
   .slider-btn {
     position: absolute;
     top: 50%;
@@ -30,12 +34,40 @@
     z-index: 10;
     background-color: rgba(255, 255, 255, 0.7);
   }
-  
+
   .prev-btn {
     left: 0;
   }
-  
+
   .next-btn {
     right: 0;
   }
-  
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+  }
+  .grid-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .date-time-container p {
+    display: block; /* Garante que os parágrafos são exibidos como blocos */
+    margin: 0; /* Remove a margem padrão dos parágrafos */
+    font-size: 18px; /* Tamanho da fonte */
+    color: #FFF; /* Cor do texto */
+}
+
+.date-time-container {
+  display: flex;
+  flex-direction: column; /* Alinha os itens verticalmente */
+  align-items: flex-start; /* Alinha os itens à esquerda (ou use 'center' para centralizar) */
+}
+
+.date-time-container p {
+  margin: 0; /* Remove a margem padrão dos parágrafos */
+  font-size: 18px; /* Tamanho da fonte */
+  color: #FFF; /* Cor do texto */
+}

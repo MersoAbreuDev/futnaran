@@ -11,12 +11,25 @@ export class MainComponent {
 
   isSidebarOpen = false;
   isActive = false;
+  img:any="";
+  userId: string = '';
   constructor(
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {
 
- 
+    const currentUser = this.authService.currentUserValue;
+
+    if (currentUser) {
+      this.userId = currentUser.uid;
+      this.authService.findById(this.userId).subscribe((res:any) => {
+        this.img = res.jogador;
+        console.log('Usuário', this.img);
+
+      });
+   }
+  }
+
 
   toggleActive() {
     this.isActive = !this.isActive;

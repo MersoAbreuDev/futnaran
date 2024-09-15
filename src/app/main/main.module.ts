@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { JogosComponent } from './jogos/jogos.component';
+import { TimesComponent } from './times/times.component';
 @NgModule({
   declarations: [
     MainComponent,
@@ -19,7 +20,8 @@ import { JogosComponent } from './jogos/jogos.component';
     MatCardModule,
     MatGridListModule,
     MatButtonModule,
-    JogosComponent
+    JogosComponent,
+    TimesComponent
 ]
 })
 export class MainModule { }

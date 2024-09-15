@@ -1,16 +1,61 @@
 <div class="card-slider-container">
     <div class="cards-wrapper" #cardsContainer>
-      <mat-card class="card-item" *ngFor="let card of cards">
+        <mat-card class="card-item" style="background-color: #222232;border: 1px solid #fff;">
+            <mat-card-content>
+                <div class="card-content">
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <img style="width: 25px; height: 25px; border: 4px solid red; border-radius: 100%;" src="/assets/icones/brasil.png" alt="">
+                            <img style="width: 25px; height: 25px; border: 4px solid blue; border-radius: 100%;" src="/assets/icones/argentina.png" alt="">
+                        </div>
+                        <div class="grid-item">
+                            <p style="font-size: 18px; color: #FFF;">{{time1}} x {{time2}}</p>
+                        </div>
+                        <div class="grid-item date-time-container">
+                            <p style="font-size: 18px; color: #FFF; margin: 0;">15/09</p>
+                            <p style="font-size: 18px; color: #FFF; margin: 0;">18:00 hs</p>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card class="card-item" style="background-color: #222232;border: 1px solid #fff;">
+          <mat-card-content>
+              <div class="card-content">
+                  <div class="grid-container">
+                      <div class="grid-item">
+                          <img style="width: 25px; height: 25px; border: 4px solid green; border-radius: 100%;" src="/assets/icones/croacia.png" alt="">
+                          <img style="width: 25px; height: 25px; border: 4px solid yellow; border-radius: 100%;" src="/assets/icones/belgica.png" alt="">
+                      </div>
+                      <div class="grid-item">
+                          <p style="font-size: 18px; color: #FFF;">{{time3}} x {{time4}}</p>
+                      </div>
+                      <div class="grid-item date-time-container">
+                          <p style="font-size: 18px; color: #FFF; margin: 0;">15/09</p>
+                          <p style="font-size: 18px; color: #FFF; margin: 0;">19:00 hs</p>
+                      </div>
+                  </div>
+              </div>
+          </mat-card-content>
+      </mat-card>
+      <mat-card class="card-item" style="background-color: #222232;border: 1px solid #fff;">
         <mat-card-content>
             <div class="card-content">
-               
-                <div class="card-text">
-                <h2>{{ card.title }}</h2>
-                <p>{{ card.description }}</p>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <img style="width: 25px; height: 25px; border: 4px solid red; border-radius: 100%;" src="/assets/icones/franca.png" alt="">
+                        <img style="width: 25px; height: 25px; border: 4px solid blue; border-radius: 100%;" src="/assets/icones/alemanha.png" alt="">
+                    </div>
+                    <div class="grid-item">
+                        <p style="font-size: 18px; color: #FFF;">{{time5}} x {{time6}}</p>
+                    </div>
+                    <div class="grid-item date-time-container">
+                        <p style="font-size: 18px; color: #FFF; margin: 0;">15/09</p>
+                        <p style="font-size: 18px; color: #FFF; margin: 0;">20:00 hs</p>
+                    </div>
                 </div>
             </div>
         </mat-card-content>
-      </mat-card>
+    </mat-card>
     </div>
 </div>
-  
