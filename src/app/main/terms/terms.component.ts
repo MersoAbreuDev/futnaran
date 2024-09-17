@@ -19,6 +19,7 @@ import { Term1Component } from './term1/term1.component';
 import { Term2Component } from './term2/term2.component';
 import { Term3Component } from './term3/term3.component';
 import { Term4Component } from './term4/term4.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-terms',
@@ -29,8 +30,11 @@ import { Term4Component } from './term4/term4.component';
 })
 export class TermsComponent {
 
+
   readonly animal = signal('');
   readonly dialog = inject(MatDialog);
+
+  constructor(private router:Router) { }
 
   term1(): void {
     const dialogRef = this.dialog.open(Term1Component, {
@@ -86,5 +90,17 @@ export class TermsComponent {
         this.animal.set(result);
       }
     });
+  }
+
+  goBack() {
+    this.router.navigate(['/main']);  // Defina a rota de "voltar"
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/main']);  // Navegar para a página inicial
+  }
+
+  navigateToProfile() {
+    this.router.navigate(['/main/profile']);  // Navegar para a página de perfil
   }
 }

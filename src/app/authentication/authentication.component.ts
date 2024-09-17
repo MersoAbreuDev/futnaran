@@ -78,5 +78,7 @@ export class AuthenticationComponent {
     this.router.navigate([`/${url}`])
   }
 
-
+  goToForgetPass() {
+    this.navigateURL('login/forgot-password');
+  }
 }

@@ -30,6 +30,9 @@ export class MainComponent {
    }
   }
 
+  gotToTerms() {
+    this.router.navigate(['main/terms']);
+  }
 
   toggleActive() {
     this.isActive = !this.isActive;

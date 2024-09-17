@@ -37,3 +37,15 @@
     </mat-card-actions>
   </mat-card>
 </div>
+<footer style="border:none;background-color: transparent;" class="mobile-tabbar">
+<button style="border: #C4C4C4; background: none;" class="ion-no-border" mat-button (click)="goBack()"> <span
+    style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">
+    arrow_circle_left
+  </span></button>
+<button style="border: #C4C4C4; background: none;" class="ion-no-border" mat-button (click)="navigateToHome()"><span
+    style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">home</span></button>
+<button style="border: #C4C4C4; background: none;" mat-button (click)="navigateToProfile()"><span
+    style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">
+    account_circle
+  </span></button>
+</footer>
