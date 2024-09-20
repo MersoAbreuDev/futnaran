@@ -1,31 +1,30 @@
 <div style="margin-top: 15px;" class="cards-container">
-    <mat-card *ngFor="let jogador of jogadores" class="player-card">
-      <mat-card-header>
-        <img mat-card-avatar [src]="jogador.imagem" alt="Foto do jogador" (click)="openImageDialog(jogador.imagem)" class="clickable-image">
-        <mat-card-title>{{ jogador.nome }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="player-details">
-          <div class="player-info">
-            <span>Posição: {{ jogador.posicao }}</span>
-            <span>Peso: {{ jogador.peso }} kg</span>
-            <span>Altura: {{ jogador.altura }} cm</span>
-            <span>Idade: {{ jogador.idade }}</span>
-          </div>
-        </div>
-      </mat-card-content>
-        <mat-card-actions style="width:100%; display: flex; justify-content:end">
-            <button mat-button >Ver detalhes</button>
-        </mat-card-actions>
-    </mat-card>
-  </div>
-  <footer  style="border:none;background-color: transparent;" class="mobile-tabbar">
-    <button style="border: #C4C4C4; background: none;" class="ion-no-border" mat-button (click)="goBack()"> <span style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">
-        arrow_circle_left
-        </span></button>
-    <button style="border: #C4C4C4; background: none;" class="ion-no-border" mat-button   (click)="navigateToHome()"><span style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">home</span></button>
-    <button style="border: #C4C4C4; background: none;" mat-button (click)="navigateToProfile()"><span style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">
-        account_circle
-        </span></button>
-  </footer>
-  
+  <mat-card *ngFor="let jogador of jogadores" class="player-card">
+    <mat-card-header class="player-header">
+      <img 
+        mat-card-avatar 
+        [src]="jogador.imagem || defaultImage" 
+        alt="Foto do jogador" 
+        (click)="openImageDialog(jogador.imagem || defaultImage)" 
+        class="clickable-image" 
+        (error)="jogador.imagem = defaultImage"  
+      >
+      <mat-card-title class="player-name">{{ getTruncatedName(jogador.nome) }}</mat-card-title>
+      <mat-card-actions class="action-button-container">
+        <button mat-button (click)="playerDetails(jogador.id)">Ver detalhes</button>
+      </mat-card-actions>
+    </mat-card-header>
+  </mat-card>
+</div>
+
+<footer style="border:none;background-color: transparent #ffff;" class="mobile-tabbar">
+  <button style="border: #C4C4C4; background: none;" class="ion-no-border" mat-button (click)="goBack()">
+    <span style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">arrow_circle_left</span>
+  </button>
+  <button style="border: #C4C4C4; background: none;" class="ion-no-border" mat-button (click)="navigateToHome()">
+    <span style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">home</span>
+  </button>
+  <button style="border: #C4C4C4; background: none;" class="ion-no-border" mat-button (click)="navigateToProfile()">
+    <span  style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">account_circle</span>
+  </button>
+</footer>

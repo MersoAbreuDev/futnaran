@@ -1,0 +1,33 @@
+<div class="player-card">
+    <div class="avatar-container">
+        <img [src]="player.imagem || '../../../../assets/img/messi_pixar.png'" alt="Player Avatar" class="avatar" (error)="player.imagem ='../../../../assets/img/messi_pixar.png'">
+    </div>
+    <h2 class="player-name">{{player.nome}}</h2>
+    <div class="player-info">
+        <div class="row">
+            <div  style="margin-top: 25px;"class="col">
+                <span><img style="width: 45px;" src="/assets/icon/fire.png" alt=""></span><p>Idade: {{player.idade}}</p>
+            </div>
+            <div  style="margin-top: 25px;" class="col">
+                <span><img style="width: 45px;" src="/assets/icon/position.png" alt=""></span><p>Posição: {{player.posicao}}</p>
+            </div>
+        </div>
+        <div  class="row">
+            <div  style="margin-top: 25px;" class="col">
+                <span><img style="width: 45px;" src="/assets/icon/scale.png" alt=""></span><p>Peso: {{player.peso}} kg</p>
+            </div>
+            <div  style="margin-top: 25px;" class="col">
+                <span><img style="width: 45px;" src="/assets/icon/height.png" alt=""></span><p>Altura: {{player.altura}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<footer  style="border:none;background-color:  transparent #ffff;" class="mobile-tabbar">
+    <button style="border: #C4C4C4; background: none;" class="ion-no-border" mat-button (click)="goBack()"> <span style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">
+        arrow_circle_left
+        </span></button>
+    <button style="border: #C4C4C4; background: none;" class="ion-no-border" mat-button   (click)="navigateToHome()"><span style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">home</span></button>
+    <button style="border: #C4C4C4; background: none;" mat-button (click)="navigateToProfile()"><span style="font-size: 35px;color: #C4C4C4;" class="material-symbols-outlined">
+        account_circle
+        </span></button>
+  </footer>

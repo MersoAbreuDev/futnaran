@@ -1,7 +1,7 @@
 import { IEndereco } from "./IEndereco";
 
 export interface IJogador {
-    id?: string;
+    id: string;
     imagem: string;
     nome: string;
     idade: number;

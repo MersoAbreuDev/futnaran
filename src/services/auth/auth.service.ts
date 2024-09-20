@@ -122,24 +122,23 @@ export class AuthService {
     });
   }
 
-  login(user: any): Observable<{ userCredential: any }> {
-    return from(this.afAuth.signInWithEmailAndPassword(user.email, user.password)).pipe(
-      map(userCredential => {
-        this.currentUserSubject.next(userCredential.user);
-        localStorage.setItem('isAuthenticated', 'true');
-        return {
-          userCredential
-        };
-      }),
-      catchError(error => {
-        console.error('Erro ao realizar login:', error);
-        localStorage.setItem('isAuthenticated', 'false');
-        return of({
-          userCredential: undefined
-        });
-      })
-    );
-  }
+login(user: any): Observable<{ userCredential: any }> {
+  return from(this.afAuth.signInWithEmailAndPassword(user.email, user.password)).pipe(
+    map(userCredential => {
+      this.currentUserSubject.next(userCredential.user);
+      localStorage.setItem('isAuthenticated', 'true');
+      return {
+        userCredential
+      };
+    }),
+    catchError(error => {
+      console.error('Erro ao realizar login:', error);
+      localStorage.setItem('isAuthenticated', 'false');
+      return throwError(error); // Propague o erro
+    })
+  );
+}
+
 
 logout(): void {
   this.afAuth.signOut()
@@ -156,7 +155,7 @@ logout(): void {
 }
 
   recoverPassword(email: string): Observable<any> {
-    return this.http.post<any>(`${this.url}/auth/forgot-password`, email)
+    return this.http.post<any>(`${this.url}/user/forgot-password`, email)
       .pipe(
         catchError(this.handleError)
       );

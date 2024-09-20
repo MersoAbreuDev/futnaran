@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-authentication',
@@ -16,6 +17,7 @@ export class AuthenticationComponent {
               private router: Router,
               private loginService: AuthService,
               private cdRef: ChangeDetectorRef,
+              private snackBar: MatSnackBar
             ){}
 
 
@@ -45,12 +47,11 @@ export class AuthenticationComponent {
     return payload;
   }
 
-
   submit() {
     if (this.isValidForm()) {
       const { email, password } = this.form.value;
       this.cdRef.detectChanges();
-
+  
       this.loginService.login({ email, password })
         .subscribe({
           next: ({ userCredential }) => {
@@ -63,13 +64,18 @@ export class AuthenticationComponent {
           error: (error: any) => {
             console.error('Erro de autenticação:', error.code, error.message);
             this.cdRef.detectChanges();
+  
+            this.snackBar.open('Usuário ou senha incorretos.', 'Fechar', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+            });
           }
         });
     }
   }
-
-
-
+  
+  
   isValidForm(){
     return this.form.valid;
   }

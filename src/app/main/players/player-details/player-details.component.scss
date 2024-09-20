@@ -1,0 +1,71 @@
+.player-card {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.avatar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.avatar {
+    border-radius: 50%;
+    height: 15vh;
+    width: 15vh;
+    object-fit: cover;
+}
+
+.player-name {
+    margin-bottom: 20px;
+}
+
+.player-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 120px;
+}
+
+.row {
+    display: contents;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.col {
+    text-align: center;
+}
+
+p{
+    font-size: 18px;
+}
+
+
+  /* Esconder a TabBar em telas maiores */
+  .mobile-tabbar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    justify-content: space-around;
+    padding: 10px 0;
+  }
+  
+  /* Exibir a TabBar em dispositivos móveis */
+  @media (max-width: 768px) {
+    .mobile-tabbar {
+      display: flex;
+    }
+  
+    .cards-container {
+      padding-bottom: 60px; /* Ajustar espaço para não sobrepor a TabBar */
+    }
+  }

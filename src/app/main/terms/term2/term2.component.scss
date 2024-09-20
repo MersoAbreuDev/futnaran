@@ -4,13 +4,13 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 20px;
-  background-color: #f4f4f4;
+  background-color: #222232;
 }
 
 .container {
   max-width: 800px;
   margin: 0 auto;
-  background: #fff;
+  background: #222232;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -18,18 +18,17 @@ body {
 
 /* Estilos para Cabeçalhos */
 h1 {
-  color: #333;
+  color: #FFF;
   font-size: 1.8em;
   margin-bottom: 20px;
 }
 
 h2 {
-  color: #555;
+  color: #FFF;
   font-size: 1.4em;
   margin-top: 20px;
   margin-bottom: 10px;
 }
-
 /* Estilos para Listas */
 ul {
   margin: 10px 0;

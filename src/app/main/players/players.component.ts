@@ -28,6 +28,7 @@ import {MatButtonModule} from '@angular/material/button';
 })
 export class PlayersComponent implements OnInit {
   jogadores: IJogador[] = [];
+  defaultImage: string = '/assets/img/messi_pixar.png';
 
   constructor(
     private authService: AuthService,
@@ -40,6 +41,10 @@ export class PlayersComponent implements OnInit {
     this.loadPlayers();
   }
 
+  getTruncatedName(name: string): string {
+    return name.length > 20 ? name.slice(0, 15) + '...' : name;
+  }
+
   loadPlayers() {
     this.authService.getAllPlayers().subscribe((res: any) => {
       console.log('Jogadores', res);
@@ -47,11 +52,15 @@ export class PlayersComponent implements OnInit {
     });
   }
 
-  openImageDialog(imageUrl: string) {  // Método para abrir o diálogo
+  playerDetails(id: string) {
+    this.router.navigate(['/main/players-details', id]); 
+  }
+
+  openImageDialog(imageUrl: string) {
     this.dialog.open(ImageDialogComponent, {
-      data: { image: imageUrl },
-      width: '420px', 
-      height:'420px' // Configura o tamanho do diálogo
+      data: { image: imageUrl || this.defaultImage }, // Usar imagem padrão se necessário
+      width: '420px',
+      height: '420px'
     });
   }
 

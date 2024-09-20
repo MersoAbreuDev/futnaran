@@ -4,6 +4,7 @@ import { MainComponent } from './main.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PlayersComponent } from './players/players.component';
 import { TermsComponent } from './terms/terms.component';
+import { PlayerDetailsComponent } from './players/player-details/player-details.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path:'players',
     component:PlayersComponent
+  },
+  {
+    path: 'players-details/:id',
+    component:PlayerDetailsComponent
   },
     {
     path:'terms',

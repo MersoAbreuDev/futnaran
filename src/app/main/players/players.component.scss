@@ -1,64 +1,76 @@
 .cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.player-card {
+  background-color: #222232;
+  width: 400px;
+  margin: 10px;
+}
+
+.player-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alinha imagem e botão de ação */
+  padding: 10px; /* Ajuste o padding se necessário */
+}
+
+.player-header img {
+  margin-right: 5px; /* Reduzir o espaçamento à direita da imagem */
+}
+
+
+.player-name {
+  font-size: 14px;
+  width: 100%;
+  margin-left: 5px; /* Reduzir o espaçamento à esquerda */
+  white-space: nowrap; /* Impede quebra de linha */
+  overflow: hidden; /* Esconde o excesso de texto */
+  text-overflow: ellipsis; /* Adiciona '...' ao final do texto truncado */
+  display: block; /* Garante que o texto se comporte corretamente */
+}
+
+
+.action-button-container {
+  display: flex;
+  justify-content: flex-end; /* Alinha o botão à direita */
+}
+
+.clickable-image {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.clickable-image:hover {
+  transform: scale(1.1);
+}
+
+/* Esconder a TabBar em telas maiores */
+.mobile-tabbar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #FFF;
+  border-top: 1px solid #ccc;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+/* Exibir a TabBar em dispositivos móveis */
+@media (max-width: 768px) {
+  .mobile-tabbar {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  
-  .player-card {
-    background-color: #222232;
-    width: 300px;
-    margin: 10px;
-  }
-  
-  .player-details {
-    
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .player-info {
-    display: grid;
-   
-    grid-template-columns: repeat(4, 1fr); /* Divide em 4 colunas */
-    gap: 10px;
-    padding: 10px 0;
-  }
-  
-  .player-info span {
-    text-align: center;
-  }
-  
-  .clickable-image {
-    cursor: pointer;
-    transition: transform 0.3s;
-  }
-  
-  .clickable-image:hover {
-    transform: scale(1.1);
   }
 
-  /* Esconder a TabBar em telas maiores */
-.mobile-tabbar {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #fff;
-    border-top: 1px solid #ccc;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    justify-content: space-around;
-    padding: 10px 0;
+  .cards-container {
+    padding-bottom: 60px; /* Ajustar espaço para não sobrepor a TabBar */
   }
-  
-  /* Exibir a TabBar em dispositivos móveis */
-  @media (max-width: 768px) {
-    .mobile-tabbar {
-      display: flex;
-    }
-  
-    .cards-container {
-      padding-bottom: 60px; /* Ajustar espaço para não sobrepor a TabBar */
-    }
-  }
-  
+}

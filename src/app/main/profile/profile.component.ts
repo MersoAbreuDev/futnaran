@@ -36,6 +36,7 @@ export class ProfileComponent {
   isLoading = false;
   imagePreview: string | ArrayBuffer | null = null;
   showCamera = false;
+  defaultImage: string = '/assets/img/default_avatar.png';  // Imagem padrão
   private stream: MediaStream | null = null;
   userId:string = '';
   @ViewChild('fileInput') fileInput!: ElementRef;
@@ -52,16 +53,15 @@ export class ProfileComponent {
 
   ngOnInit() {
     this.initForms();
-     const currentUser = this.authService.currentUserValue;
+    const currentUser = this.authService.currentUserValue;
     
     if (currentUser) {
       this.userId = currentUser.uid;
-      this.authService.findById(this.userId).subscribe((res:any) => {
+      this.authService.findById(this.userId).subscribe((res: any) => {
         const user = res.jogador;
         console.log('Usuário', user);
         this.populateForm(user);
       });
-     
     } else {
       console.log('Nenhum usuário logado');
     }
@@ -115,43 +115,40 @@ export class ProfileComponent {
   async onFileChange(event: any) {
     const file = event.target.files[0];
     if (file) {
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.imagePreview = reader.result;
-        };
-        reader.readAsDataURL(file);
-        
-        // Enviar a imagem para o Firebase Storage
-        this.isLoading = true;
-        this.storageService.uploadImage(file, this.userId).subscribe({
-          next: (downloadURL) => {
-            this.isLoading = false;
-            this.jogadorForm.patchValue({ imagem: downloadURL });  // Atualiza o campo imagem com a URL retornada do Storage
-            this.snackBar.open('Imagem enviada com sucesso!', 'Fechar', {
-              duration: 3000,
-              verticalPosition: 'top',
-              horizontalPosition: 'center',
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                this.imagePreview = reader.result;
+            };
+            reader.readAsDataURL(file);
+            
+            this.isLoading = true;
+            this.storageService.uploadImage(file, this.userId).subscribe({
+                next: (downloadURL) => {
+                    this.isLoading = false;
+                    this.jogadorForm.patchValue({ imagem: downloadURL });
+                    this.snackBar.open('Imagem enviada com sucesso!', 'Fechar', {
+                        duration: 3000,
+                        verticalPosition: 'top',
+                        horizontalPosition: 'center',
+                    });
+                },
+                error: (error) => {
+                    this.isLoading = false;
+                    console.error('Erro ao enviar a imagem:', error);
+                    this.snackBar.open('Erro ao enviar a imagem!', 'Fechar', {
+                        duration: 3000,
+                        verticalPosition: 'top',
+                        horizontalPosition: 'center',
+                    });
+                }
             });
-          },
-          error: (error) => {
-            this.isLoading = false;
-            console.error('Erro ao enviar a imagem:', error);
-            this.snackBar.open('Erro ao enviar a imagem!', 'Fechar', {
-              duration: 3000,
-              verticalPosition: 'top',
-              horizontalPosition: 'center',
-            });
-          }
-        });
-      } else {
-        alert('Por favor, selecione uma imagem.');
-      }
-      this.showCamera = false;
+        } else {
+            alert('Por favor, selecione uma imagem.');
+        }
+        this.showCamera = false;
     }
-  }
-  
-  
+}
 
   async startCamera() {
     try {
@@ -206,19 +203,24 @@ export class ProfileComponent {
   populateForm(data: any) {
     this.jogadorForm.patchValue({
       nome: data.nome,
-      telefone:  data.telefone,
-      idade:  data.idade,
-      posicao:  data.posicao,
-      altura:  data.altura,
+      telefone: data.telefone,
+      idade: data.idade,
+      posicao: data.posicao,
+      altura: data.altura,
       peso: data.peso,
       cep: data.endereco.cep,
       logradouro: data.endereco.logradouro,
-      numero:  data.endereco.numero,
+      numero: data.endereco.numero,
       bairro: data.endereco.bairro,
       cidade: data.endereco.cidade,
       imagem: data.imagem 
     });
-    this.imagePreview = data.imagem;
+    
+    if (data.imagem) {
+      this.imagePreview = data.imagem;
+    } else {
+      this.imagePreview = this.defaultImage;  // Definindo imagem padrão
+    }
   }
 
   createPayloadPerfil() {
